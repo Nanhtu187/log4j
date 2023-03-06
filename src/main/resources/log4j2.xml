@@ -1,0 +1,25 @@
+<Configuration>
+    <Appenders>
+        <Console name = "stdout">
+            <PatternLayout pattern="%highlight{[%d] %M %c %p - %m%n}" disableAnsi="false"/>
+        </Console>
+        <RollingFile name="RollingFile" fileName="log/rolling.log"
+                     filePattern="log/rollingLog_%d{dd-MM-yyyy}_%i.log">
+            <PatternLayout pattern="%highlight{[%d] %M %c %p - %m%n}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <OnStartupTriggeringPolicy />
+<!--                <SizeBasedTriggeringPolicy size="50"/>-->
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level = "info">
+            <AppenderRef ref="stdout"/>
+        </Root>
+        <Logger level = "info" name="org.example.Console" additivity="false">
+            <AppenderRef ref="stdout"/>
+        </Logger>
+    </Loggers>
+</Configuration>
